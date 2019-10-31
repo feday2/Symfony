@@ -3,12 +3,11 @@
 namespace App\Collection;
 
 use App\Entity\Article;
-use Faker\Factory;
 
 /**
  * @author feday2 <feday2@gmail.com>
  */
-class ArticleCollection
+class ArticleCollection implements CollectionInterface
 {
     private $articles;
     private $newest;
@@ -30,27 +29,6 @@ class ArticleCollection
     }
 
     /**
-     * Generate random articles.
-     *
-     * @return array
-     */
-    private function generate(): array
-    {
-        $this->faker = Factory::create();
-        $articles = [];
-        for ($i = 0; $i < 15; ++$i) {
-            $articles[] = new Article(
-                $this->faker->numberBetween(1, 100),
-                $this->faker->name,
-                $this->faker->text,
-                $this->faker->imageUrl(640, 480),
-                $this->faker->DateTime('now'));
-        }
-
-        return $articles;
-    }
-
-    /**
      * Check if in array only articles.
      *
      * @param array $articles
@@ -64,6 +42,9 @@ class ArticleCollection
         }
     }
 
+    /**
+     * @return void
+     */
     private function categorize(): void
     {
         $articles = $this->getSortedByPublishedTime();
@@ -90,21 +71,6 @@ class ArticleCollection
     }
 
     /**
-     * @param int $id
-     *
-     * @return Article
-     */
-    public function generateArticleWithId(int $id): Article
-    {
-        return new Article(
-            $id,
-            $this->faker->name,
-            $this->faker->text,
-            $this->faker->imageUrl(640, 480),
-            $this->faker->DateTime('now'));
-    }
-
-    /**
      * @return Article
      */
     public function getNewest(): Article
@@ -126,5 +92,10 @@ class ArticleCollection
     public function getOther(): array
     {
         return $this->other;
+    }
+
+    public function getAll(): array
+    {
+        return $this->articles;
     }
 }

@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use App\Collection\ArticleCollection;
+use App\Service\ArticleGeneratorService;
 
 /**
  * @author feday2 <feday2@gmail.com>
@@ -18,8 +18,8 @@ class ArticleController extends AbstractController
      */
     public function index(int $id): Response
     {
-        $article = (new ArticleCollection())->generateArticleWithId($id);
-
+        $collection = (new ArticleGeneratorService())->getCollection(['id' => $id]);
+        $article = $collection->getAll()[0];
         return $this->render('Article\index.html.twig', [
             'article' => $article,
         ]);
