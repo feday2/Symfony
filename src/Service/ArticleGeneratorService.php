@@ -10,7 +10,11 @@ use Faker\Factory;
 
 class ArticleGeneratorService implements CollectionGetterServiceInterface
 {
-
+    /**
+     * @param array $filter
+     *
+     * @return CollectionInterface
+     */
     public function getCollection(array $filter = null): CollectionInterface
     {
         if (null === $filter) {
@@ -19,7 +23,8 @@ class ArticleGeneratorService implements CollectionGetterServiceInterface
         if (!empty($filter['id'])) {
             return $this->generateArticleWithId($filter['id']);
         }
-        return new NullCollection;
+
+        return new NullCollection();
     }
 
     /**
@@ -40,6 +45,7 @@ class ArticleGeneratorService implements CollectionGetterServiceInterface
                 $faker->DateTime('now'));
         }
         $articleCollection = new ArticleCollection($articles);
+
         return $articleCollection;
     }
 
@@ -51,12 +57,13 @@ class ArticleGeneratorService implements CollectionGetterServiceInterface
     private function generateArticleWithId(int $id): ArticleCollection
     {
         $faker = Factory::create();
-        $article =  new Article(
+        $article = new Article(
             $id,
             $faker->name,
             $faker->text,
             $faker->imageUrl(640, 480),
             $faker->DateTime('now'));
-    return new ArticleCollection([$article]);
+
+        return new ArticleCollection([$article]);
     }
 }

@@ -17,14 +17,10 @@ class ArticleCollection implements CollectionInterface
     /**
      * @param array $articles
      */
-    public function __construct(array $articles = null)
+    public function __construct(array $articles)
     {
-        if (null === $articles) {
-            $this->articles = $this->generate();
-        } else {
-            $this->isArticle($articles);
-            $this->articles = $articles;
-        }
+        $this->isArticle($articles);
+        $this->articles = $articles;
         $this->categorize();
     }
 
@@ -94,6 +90,9 @@ class ArticleCollection implements CollectionInterface
         return $this->other;
     }
 
+    /**
+     * @return array
+     */
     public function getAll(): array
     {
         return $this->articles;
