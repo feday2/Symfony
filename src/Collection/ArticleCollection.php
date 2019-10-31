@@ -38,9 +38,6 @@ class ArticleCollection implements CollectionInterface
         }
     }
 
-    /**
-     * @return void
-     */
     private function categorize(): void
     {
         $articles = $this->getSortedByPublishedTime();
