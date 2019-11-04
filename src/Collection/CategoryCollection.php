@@ -28,4 +28,13 @@ class CategoryCollection implements CollectionInterface, \IteratorAggregate
     {
         return new \ArrayIterator($this->categories);
     }
+
+    public function first(): ?Category
+    {
+        if (!empty($this->categories[0])) {
+            return $this->categories[0];
+        }
+
+        return null;
+    }
 }

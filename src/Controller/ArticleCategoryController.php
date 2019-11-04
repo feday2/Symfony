@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Service\CollectionGetterServiceInterface;
+use Doctrine\ORM\EntityNotFoundException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @author feday2 <feday2@gmail.com>
@@ -32,8 +34,12 @@ class ArticleCategoryController extends AbstractController
 
     public function index(string $slug): Response
     {
-        $collection = $this->collectionGetterService->getCollection(['slug' => $slug]);
-        $category = $collection->getAll()[0];
+        try {
+            $collection = $this->collectionGetterService->getCollection(['slug' => $slug]);
+        } catch (EntityNotFoundException $e) {
+            throw new NotFoundHttpException($e->getMessage());
+        }
+        $category = $collection->first();
 
         return $this->render('Article\category.html.twig', [
             'category' => $category,

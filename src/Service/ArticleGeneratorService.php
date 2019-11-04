@@ -25,9 +25,6 @@ class ArticleGeneratorService implements CollectionGetterServiceInterface
         return new NullCollection();
     }
 
-    /**
-     * Generate random articles.
-     */
     private function generate(int $count): CollectionInterface
     {
         $faker = Factory::create();

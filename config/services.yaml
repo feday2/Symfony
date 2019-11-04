@@ -36,11 +36,11 @@ services:
 
     App\Service\ArticleGetterService:
         arguments:
-            - '@doctrine.orm.entity_manager'
+            - '@App\Repository\Article\ArticleRepository'
 
     App\Service\CategoryGetterService:
         arguments:
-            - '@doctrine.orm.entity_manager'
+            - '@App\Repository\CategoryRepository'
 
     App\Controller\ArticleCategoryController:
         arguments:

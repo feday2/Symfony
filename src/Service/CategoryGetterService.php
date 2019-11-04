@@ -5,16 +5,15 @@ namespace App\Service;
 use App\Collection\CategoryCollection;
 use App\Collection\CollectionInterface;
 use App\Collection\NullCollection;
-use App\Entity\Category;
-use Doctrine\ORM\EntityManager;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 class CategoryGetterService implements CollectionGetterServiceInterface
 {
     private $repository;
 
-    public function __construct(EntityManager $em)
+    public function __construct(ServiceEntityRepository $repository)
     {
-        $this->repository = $em->getRepository(Category::class);
+        $this->repository = $repository;
     }
 
     /**
@@ -29,9 +28,6 @@ class CategoryGetterService implements CollectionGetterServiceInterface
             $category = $this->repository->findOneBy([
                 'slug' => $filter['slug'],
             ]);
-            if (null === $category) {
-                throw new NotFoundHttpException('Category not found');
-            }
 
             return new CategoryCollection($category);
         }
