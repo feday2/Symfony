@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+  <section class="top-posts">
+      <article class="main-post top-post">
+          <a href="#" class="category-link">World</a>
+          <a href="{{ path('article', {'id': articles.newest.id }) }}">
+              <img src="{{ articles.newest.image }}" alt="" class="img-fluid">
+          </a>
+          <a href="{{ path('article', {'id': articles.newest.id }) }}" class="post-link">
+              <h1>{{ articles.newest.title }}</h1>
+          </a>
+          <time>{{ articles.newest.publishedAt|date('Y-m-d') }}</time>
+          <p>{{ articles.newest.body }}</p>
+          <div class="clearfix"></div>
+      </article>
+      <div class="row posts">
+            <div class="col"></div>
+            {% for article in articles.common %} 
+                <div class="col-3">
+                    <article class="post top-post">
+                        <a href="#" class="category-link">World</a>
+                        <a href="{{ path('article', {'id': article.id }) }}">
+                            <img src="{{ article.image }}" alt="" class="img-fluid">
+                        </a>
+                        <a href="{{ path('article', {'id': article.id }) }}" class="post-link">
+                            <h3>{{ article.title }}</h3>
+                        </a>
+                        <time>{{ article.publishedAt|date('Y-m-d') }}</time>
+                        <p>{{ article.body }}</p>
+                    </article>
+                </div>
+            {% endfor %}
+          <div class="col"></div>
+      </div>
+  </section>
+  <section class="regular-posts">
+        {% for article in articles.other %}
+                <article class="post">
+                    <a href="#" class="category-link">World</a>
+                    <a href="{{ path('article', {'id': article.id }) }}"><h4>{{ article.title }}</h4></a>
+                    <time>{{ article.publishedAt|date('Y-m-d') }}</time>
+                </article>
+        {% endfor %}
+  </section>
+{% endblock %}
