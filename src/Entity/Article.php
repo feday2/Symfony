@@ -2,130 +2,127 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * @author feday2 <feday2@gmail.com>
+ * @ORM\Entity(repositoryClass="App\Repository\Article\ArticleRepository")
  */
 class Article
 {
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $title;
-    private $body;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
     private $image;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $body;
+
+    /**
+     * @ORM\Column(type="datetime_immutable", nullable=true)
+     */
     private $publishedAt;
 
     /**
-     * @param int       $id
-     * @param string    $title
-     * @param string    $body
-     * @param string    $image
-     * @param \DateTime $publishedAt
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="articles")
      */
-    public function __construct(int $id = null, string $title = null, string $body = null, string $image = null, \DateTime $publishedAt = null)
+    private $category;
+
+    public function __construct(string $title)
     {
-        $this->id = $id;
         $this->title = $title;
-        $this->body = $body;
-        $this->image = $image;
-        $this->publishedAt = $publishedAt;
     }
 
-    /**
-     * Get the value of id.
-     */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * Set the value of id.
-     *
-     * @return self
-     */
-    public function setId($id): self
+    public function setCategory(?Category $category): self
     {
-        $this->id = $id;
+        $this->category = $category;
 
         return $this;
     }
 
-    /**
-     * Get the value of title.
-     */
-    public function getTitle()
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * Set the value of title.
-     *
-     * @return self
-     */
-    public function setTitle($title): self
+    public function setTitle(string $title): self
     {
         $this->title = $title;
 
         return $this;
     }
 
-    /**
-     * Get the value of body.
-     */
-    public function getBody()
+    public function getDescription(): ?string
     {
-        return $this->body;
+        return $this->description;
     }
 
-    /**
-     * Set the value of body.
-     *
-     * @return self
-     */
-    public function setBody($body): self
+    public function setDescription(?string $description): self
     {
-        $this->body = $body;
+        $this->description = $description;
 
         return $this;
     }
 
-    /**
-     * Get the value of image.
-     */
-    public function getImage()
+    public function getImage(): string
     {
-        return $this->image;
+        return $this->image ?? 'default.png';
     }
 
-    /**
-     * Set the value of image.
-     *
-     * @return self
-     */
-    public function setImage($image): self
+    public function setImage(?string $image): self
     {
         $this->image = $image;
 
         return $this;
     }
 
-    /**
-     * Get the value of publishedAt.
-     */
-    public function getPublishedAt()
+    public function getBody(): ?string
+    {
+        return $this->body;
+    }
+
+    public function setBody(?string $body): self
+    {
+        $this->body = $body;
+
+        return $this;
+    }
+
+    public function getPublishedAt(): ?\DateTimeImmutable
     {
         return $this->publishedAt;
     }
 
-    /**
-     * Set the value of publishedAt.
-     *
-     * @return self
-     */
-    public function setPublishedAt($publishedAt): self
+    public function publish(): void
     {
-        $this->publishedAt = $publishedAt;
-
-        return $this;
+        $this->publishedAt = new \DateTimeImmutable();
     }
 }

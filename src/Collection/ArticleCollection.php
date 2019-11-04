@@ -2,7 +2,7 @@
 
 namespace App\Collection;
 
-use App\Entity\Article;
+use App\Model\Article;
 
 /**
  * @author feday2 <feday2@gmail.com>

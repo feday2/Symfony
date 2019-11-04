@@ -5,7 +5,7 @@ namespace App\Service;
 use App\Collection\CollectionInterface;
 use App\Collection\ArticleCollection;
 use App\Collection\NullCollection;
-use App\Entity\Article;
+use App\Model\Article;
 use Faker\Factory;
 
 class ArticleGeneratorService implements CollectionGetterServiceInterface
