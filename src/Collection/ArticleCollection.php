@@ -17,25 +17,10 @@ class ArticleCollection implements CollectionInterface
     /**
      * @param array $articles
      */
-    public function __construct(array $articles)
+    public function __construct(Article ...$articles)
     {
-        $this->isArticle($articles);
         $this->articles = $articles;
         $this->categorize();
-    }
-
-    /**
-     * Check if in array only articles.
-     *
-     * @param array $articles
-     */
-    private function isArticle(array $articles): void
-    {
-        foreach ($articles as $article) {
-            if (!$article instanceof Article) {
-                throw new \Exception('Not instance of Article');
-            }
-        }
     }
 
     private function categorize(): void

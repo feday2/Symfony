@@ -44,7 +44,7 @@ class ArticleGeneratorService implements CollectionGetterServiceInterface
                 $faker->imageUrl(640, 480),
                 $faker->DateTime('now'));
         }
-        $articleCollection = new ArticleCollection($articles);
+        $articleCollection = new ArticleCollection(...$articles);
 
         return $articleCollection;
     }
@@ -64,6 +64,6 @@ class ArticleGeneratorService implements CollectionGetterServiceInterface
             $faker->imageUrl(640, 480),
             $faker->DateTime('now'));
 
-        return new ArticleCollection([$article]);
+        return new ArticleCollection($article);
     }
 }
