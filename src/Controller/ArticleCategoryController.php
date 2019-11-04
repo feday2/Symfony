@@ -36,10 +36,10 @@ class ArticleCategoryController extends AbstractController
     {
         try {
             $collection = $this->collectionGetterService->getCollection(['slug' => $slug]);
+            $category = $collection->first();
         } catch (EntityNotFoundException $e) {
             throw new NotFoundHttpException($e->getMessage());
         }
-        $category = $collection->first();
 
         return $this->render('Article\category.html.twig', [
             'category' => $category,
