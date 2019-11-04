@@ -7,9 +7,6 @@ namespace App\Collection;
  */
 class NullCollection implements CollectionInterface
 {
-    /**
-     * @return array
-     */
     public function getAll(): array
     {
         return [];

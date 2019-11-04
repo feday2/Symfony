@@ -25,9 +25,23 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
     App\Controller\MainController:
         arguments:
-            - '@App\Service\ArticleGeneratorService'
+            - '@App\Service\ArticleGetterService'
+
     App\Controller\ArticleController:
         arguments:
-            - '@App\Service\ArticleGeneratorService'
+            - '@App\Service\ArticleGetterService'
+
+    App\Service\ArticleGetterService:
+        arguments:
+            - '@doctrine.orm.entity_manager'
+
+    App\Service\CategoryGetterService:
+        arguments:
+            - '@doctrine.orm.entity_manager'
+
+    App\Controller\ArticleCategoryController:
+        arguments:
+            - '@App\Service\CategoryGetterService'

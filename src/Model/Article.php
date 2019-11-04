@@ -39,8 +39,6 @@ class Article
 
     /**
      * Set the value of id.
-     *
-     * @return self
      */
     public function setId($id): self
     {
@@ -59,8 +57,6 @@ class Article
 
     /**
      * Set the value of title.
-     *
-     * @return self
      */
     public function setTitle($title): self
     {
@@ -79,8 +75,6 @@ class Article
 
     /**
      * Set the value of body.
-     *
-     * @return self
      */
     public function setBody($body): self
     {
@@ -99,8 +93,6 @@ class Article
 
     /**
      * Set the value of image.
-     *
-     * @return self
      */
     public function setImage($image): self
     {
@@ -119,8 +111,6 @@ class Article
 
     /**
      * Set the value of publishedAt.
-     *
-     * @return self
      */
     public function setPublishedAt($publishedAt): self
     {

@@ -1,4 +1,4 @@
-News Portal with article page
+News Portal with article page and category page
 -----------
 
 This is demo projects on Symfony 4 framework.

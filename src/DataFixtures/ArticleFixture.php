@@ -10,7 +10,7 @@ final class ArticleFixture extends AbstractFixture implements DependentFixtureIn
 {
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < 15; $i++) {
+        for ($i = 0; $i < 15; ++$i) {
             $title = \ucfirst($this->faker->words($this->faker->numberBetween(3, 5), true));
             $article = new Article($title);
 
@@ -25,10 +25,10 @@ final class ArticleFixture extends AbstractFixture implements DependentFixtureIn
             $body = '';
             $sentences = $this->faker->numberBetween(8, 20);
 
-            for ($j = 0; $j < $sentences; $j++) {
+            for ($j = 0; $j < $sentences; ++$j) {
                 $body .= '<p>'
-                    . $this->faker->words($this->faker->numberBetween(4, 8), true)
-                    . '</p>'
+                    .$this->faker->words($this->faker->numberBetween(4, 8), true)
+                    .'</p>'
                 ;
             }
 
@@ -45,7 +45,7 @@ final class ArticleFixture extends AbstractFixture implements DependentFixtureIn
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getDependencies()
     {

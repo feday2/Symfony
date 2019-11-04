@@ -2,8 +2,8 @@
 
 namespace App\Service;
 
+use App\Collection\ArticleFakeCollection;
 use App\Collection\CollectionInterface;
-use App\Collection\ArticleCollection;
 use App\Collection\NullCollection;
 use App\Model\Article;
 use Faker\Factory;
@@ -12,8 +12,6 @@ class ArticleGeneratorService implements CollectionGetterServiceInterface
 {
     /**
      * @param array $filter
-     *
-     * @return CollectionInterface
      */
     public function getCollection(array $filter = null): CollectionInterface
     {
@@ -29,10 +27,8 @@ class ArticleGeneratorService implements CollectionGetterServiceInterface
 
     /**
      * Generate random articles.
-     *
-     * @return array
      */
-    private function generate(int $count): ArticleCollection
+    private function generate(int $count): CollectionInterface
     {
         $faker = Factory::create();
         $articles = [];
@@ -44,17 +40,12 @@ class ArticleGeneratorService implements CollectionGetterServiceInterface
                 $faker->imageUrl(640, 480),
                 $faker->DateTime('now'));
         }
-        $articleCollection = new ArticleCollection(...$articles);
+        $articleCollection = new ArticleFakeCollection(...$articles);
 
         return $articleCollection;
     }
 
-    /**
-     * @param int $id
-     *
-     * @return Article
-     */
-    private function generateArticleWithId(int $id): ArticleCollection
+    private function generateArticleWithId(int $id): CollectionInterface
     {
         $faker = Factory::create();
         $article = new Article(
@@ -64,6 +55,6 @@ class ArticleGeneratorService implements CollectionGetterServiceInterface
             $faker->imageUrl(640, 480),
             $faker->DateTime('now'));
 
-        return new ArticleCollection($article);
+        return new ArticleFakeCollection($article);
     }
 }

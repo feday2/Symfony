@@ -1,0 +1,12 @@
+<nav class="collapse navbar-collapse" id="nav-items">
+    <ul class="navbar-nav mr-auto">
+    {% for category in categories %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('category', {'slug': category.slug }) }}">{{ category.title }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+    <form class="form-inline my-2 my-md-0" action="" method="get">
+        <input class="form-control search" type="text" placeholder="Search news...">
+    </form>
+</nav>

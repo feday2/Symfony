@@ -7,7 +7,7 @@
 {% block body %}
   <section class="top-posts">
       <article class="main-post top-post">
-          <a href="#" class="category-link">World</a>
+          <a href="{{ path('category', {'slug': articles.newest.category.slug }) }}" class="category-link">{{articles.newest.category.title}}</a>
           <a href="{{ path('article', {'id': articles.newest.id }) }}">
               <img src="{{ articles.newest.image }}" alt="" class="img-fluid">
           </a>
@@ -23,7 +23,7 @@
             {% for article in articles.common %} 
                 <div class="col-3">
                     <article class="post top-post">
-                        <a href="#" class="category-link">World</a>
+                        <a href="{{ path('category', {'slug': article.category.slug }) }}" class="category-link">{{article.category.title}}</a>
                         <a href="{{ path('article', {'id': article.id }) }}">
                             <img src="{{ article.image }}" alt="" class="img-fluid">
                         </a>
@@ -41,7 +41,7 @@
   <section class="regular-posts">
         {% for article in articles.other %}
                 <article class="post">
-                    <a href="#" class="category-link">World</a>
+                    <a href="{{ path('category', {'slug': article.category.slug }) }}" class="category-link">{{article.category.title}}</a>
                     <a href="{{ path('article', {'id': article.id }) }}"><h4>{{ article.title }}</h4></a>
                     <time>{{ article.publishedAt|date('Y-m-d') }}</time>
                 </article>

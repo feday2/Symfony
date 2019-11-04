@@ -7,3 +7,7 @@ article:
    controller: App\Controller\ArticleController::index
    requirements:
       id: '\d+'
+
+category:
+   path: /category/{slug}
+   controller: App\Controller\ArticleCategoryController::index

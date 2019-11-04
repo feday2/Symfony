@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
+use App\Service\CollectionGetterServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use App\Service\CollectionGetterServiceInterface;
 
 /**
  * @author feday2 <feday2@gmail.com>
@@ -13,19 +13,11 @@ class ArticleController extends AbstractController
 {
     private $collectionGetterService;
 
-    /**
-     * @param CollectionGetterServiceInterface $collectionGetterService
-     */
     public function __construct(CollectionGetterServiceInterface $collectionGetterService)
     {
         $this->collectionGetterService = $collectionGetterService;
     }
 
-    /**
-     * @param int $id
-     *
-     * @return Response
-     */
     public function index(int $id): Response
     {
         $collection = $this->collectionGetterService->getCollection(['id' => $id]);

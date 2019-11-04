@@ -12,8 +12,6 @@ interface CollectionGetterServiceInterface
      * of property.
      *
      * @param array $filter
-     *
-     * @return CollectionInterface
      */
     public function getCollection(array $filter = null): CollectionInterface;
 }

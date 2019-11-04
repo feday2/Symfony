@@ -7,8 +7,5 @@ namespace App\Collection;
  */
 interface CollectionInterface
 {
-    /**
-     * @return array
-     */
     public function getAll(): array;
 }
