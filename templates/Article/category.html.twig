@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+  <section class="top-posts">
+      <article class="main-post top-post">
+          <a href="#" class="category-link">{{ category.title }}</a>
+          <p>Category name: "{{ category.title }}"</p>
+          <div class="clearfix"></div>
+      </article>
+  </section>
+  <section class="regular-posts">
+    <h4 class="top-post" style="color: #DC3543;">Articles in category:</h4>
+        {% for article in category.articles %}
+                <article class="post">
+                    <a href="{{ path('article', {'id': article.id }) }}"><h4>{{article.title}}</h4></a>
+                </article>
+        {% endfor %}
+  </section>
+{% endblock %}

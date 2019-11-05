@@ -25,3 +25,23 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Controller\MainController:
+        arguments:
+            - '@App\Service\ArticleGetterService'
+
+    App\Controller\ArticleController:
+        arguments:
+            - '@App\Service\ArticleGetterService'
+
+    App\Service\ArticleGetterService:
+        arguments:
+            - '@App\Repository\Article\ArticleRepository'
+
+    App\Service\CategoryGetterService:
+        arguments:
+            - '@App\Repository\CategoryRepository'
+
+    App\Controller\ArticleCategoryController:
+        arguments:
+            - '@App\Service\CategoryGetterService'

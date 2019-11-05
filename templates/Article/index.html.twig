@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
+
+{% block body %}
+  <section class="top-posts">
+      <article class="main-post top-post">
+          <a href="{{ path('category', {'slug': article.category.slug }) }}" class="category-link">{{article.category.title}}</a>
+          <img src="{{ article.image }}" alt="" class="img-fluid">
+          <h1>{{ article.title }}</h1>
+          <time>{{ article.publishedAt|date('Y-m-d') }}</time>
+          <p>{{ article.body }}</p>
+          <div class="clearfix"></div>
+      </article>
+  </section>
+{% endblock %}
