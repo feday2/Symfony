@@ -17,5 +17,4 @@ class CategoryRepository extends AbstractRepository
     {
         parent::__construct($registry, Category::class);
     }
-
 }

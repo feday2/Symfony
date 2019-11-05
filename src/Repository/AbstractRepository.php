@@ -12,14 +12,10 @@ use Doctrine\ORM\EntityNotFoundException;
  * @method Category[]    findAll()
  * @method Category[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-
 abstract class AbstractRepository extends ServiceEntityRepository
 {
-
     /**
-     * @param array $criteria
      * @param array $orderBy
-     * @return object|null
      */
     public function findOneBy(array $criteria, array $orderBy = null): ?object
     {

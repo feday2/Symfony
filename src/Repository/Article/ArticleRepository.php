@@ -3,8 +3,9 @@
 namespace App\Repository\Article;
 
 use App\Entity\Article;
-use Doctrine\Common\Persistence\ManagerRegistry;
 use App\Repository\AbstractRepository;
+use Doctrine\Common\Persistence\ManagerRegistry;
+
 /**
  * @method Article|null find($id, $lockMode = null, $lockVersion = null)
  * @method Article|null findOneBy(array $criteria, array $orderBy = null)
@@ -33,5 +34,4 @@ final class ArticleRepository extends AbstractRepository implements ArticleRepos
 
         return $query->getResult();
     }
-
 }
