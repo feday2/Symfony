@@ -3,17 +3,15 @@
 namespace App\Repository\Article;
 
 use App\Entity\Article;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Doctrine\ORM\EntityNotFoundException;
-
+use App\Repository\AbstractRepository;
 /**
  * @method Article|null find($id, $lockMode = null, $lockVersion = null)
  * @method Article|null findOneBy(array $criteria, array $orderBy = null)
  * @method Article[]    findAll()
  * @method Article[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-final class ArticleRepository extends ServiceEntityRepository implements ArticleRepositoryInterface
+final class ArticleRepository extends AbstractRepository implements ArticleRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -36,16 +34,4 @@ final class ArticleRepository extends ServiceEntityRepository implements Article
         return $query->getResult();
     }
 
-    /**
-     * @param array $orderBy
-     */
-    public function findOneBy(array $criteria, array $orderBy = null): ?object
-    {
-        $result = parent::findOneBy($criteria, $orderBy);
-        if (null === $result) {
-            throw new EntityNotFoundException();
-        }
-
-        return $result;
-    }
 }

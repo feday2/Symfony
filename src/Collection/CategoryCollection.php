@@ -31,10 +31,6 @@ class CategoryCollection implements CollectionInterface, \IteratorAggregate
 
     public function first(): ?Category
     {
-        if (!empty($this->categories[0])) {
-            return $this->categories[0];
-        }
-
-        return null;
+        return $this->categories[0] ?? null;
     }
 }
